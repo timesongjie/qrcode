@@ -17,8 +17,4 @@
 		<setting name="jdbcTypeForNull" value="OTHER" />
 		<setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString" />
 	</settings>
-	<typeAliases>
-		<typeAlias type="com.bbkmobile.iqoo.tmp.test.entity.Test"
-			alias="test" />
-	</typeAliases>
-</configuration>   
+</configuration>

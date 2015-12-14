@@ -1,8 +1,9 @@
-package com.bbkmobile.iqoo.tmp.test.dao;
+package com.heroopsys.qrcode.tmp.test.dao;
+
+import com.heroopsys.qrcode.tmp.test.entity.Test;
 
 import java.util.List;
 
-import com.bbkmobile.iqoo.tmp.test.entity.Test;
 
 public interface TestDao {
 

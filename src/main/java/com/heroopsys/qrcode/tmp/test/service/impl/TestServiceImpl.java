@@ -1,14 +1,14 @@
-package com.bbkmobile.iqoo.tmp.test.service.impl;
+package com.heroopsys.qrcode.tmp.test.service.impl;
 
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import com.heroopsys.qrcode.tmp.test.dao.TestDao;
+import com.heroopsys.qrcode.tmp.test.entity.Test;
+import com.heroopsys.qrcode.tmp.test.service.TestService;
 import org.springframework.stereotype.Service;
 
-import com.bbkmobile.iqoo.tmp.test.dao.TestDao;
-import com.bbkmobile.iqoo.tmp.test.entity.Test;
-import com.bbkmobile.iqoo.tmp.test.service.TestService;
 
 @Service
 public class TestServiceImpl implements TestService {

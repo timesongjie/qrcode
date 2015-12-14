@@ -1,8 +1,9 @@
-package com.bbkmobile.iqoo.tmp.test.service;
+package com.heroopsys.qrcode.tmp.test.service;
+
+import com.heroopsys.qrcode.tmp.test.entity.Test;
 
 import java.util.List;
 
-import com.bbkmobile.iqoo.tmp.test.entity.Test;
 
 public interface TestService {
     public List<Test> test(Integer pageNumber, Integer pageSize) throws Exception;

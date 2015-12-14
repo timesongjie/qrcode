@@ -13,16 +13,12 @@
 	<mvc:annotation-driven>
 		<mvc:message-converters register-defaults="true">
 			<bean
-				class="com.bbkmobile.iqoo.common.converter.UTF8StringHttpMessageConverter">
+				class="com.heroopsys.qrcode.common.converter.UTF8StringHttpMessageConverter">
 				<property name="writeAcceptCharset" value="false" />
 			</bean>
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 	<aop:aspectj-autoproxy proxy-target-class="true" />
-	<bean id="cacheManager" class="com.bbkmobile.iqoo.cache.ehcache.EhcachCacheManager"
-		destroy-method="destory">
-		<property name="configLocation" value="classpath:config/ehcache.xml" />
-	</bean>
 	<tx:annotation-driven transaction-manager="txManager" />
 	<!-- Convention over configuration -->
 	<bean
@@ -34,7 +30,7 @@
 					class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
 					<property name="extractValueFromSingleKeyModel" value="true"></property>
 					<property name="objectMapper">
-						<bean class="com.bbkmobile.iqoo.common.converter.ObjectMappingCustomer">
+						<bean class="com.heroopsys.qrcode.common.converter.ObjectMappingCustomer">
 						</bean>
 					</property>
 				</bean>

@@ -1,4 +1,4 @@
-package com.bbkmobile.iqoo.tmp.test.entity;
+package com.heroopsys.qrcode.tmp.test.entity;
 
 public class Test {
     private String name;

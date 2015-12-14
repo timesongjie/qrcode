@@ -39,7 +39,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>springmvc</servlet-name>
-    <url-pattern>/api/*</url-pattern>
+    <url-pattern>/qrcode/*</url-pattern>
   </servlet-mapping>
   <error-page>
     <error-code>404</error-code>
