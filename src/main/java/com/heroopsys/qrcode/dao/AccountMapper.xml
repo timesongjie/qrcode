@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.heroopsys.qrcode.dao.AccountMapper">
+    <resultMap id="accountMap" type="com.heroopsys.qrcode.entity.Account">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    </resultMap>
+
+    <select id="queryByNameAndPwd" resultMap="accountMap" parameterType="java.util.Map">
+        select id,user_name from t_qrcode_account where user_name=#{name} and password=#{password}
+    </select>
+</mapper>
