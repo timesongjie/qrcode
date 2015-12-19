@@ -22,11 +22,13 @@
 		<property name="acquireIncrement" value="${acquireIncrement}" />
 	</bean>
 	<bean id="txManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		  class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="configLocation" value="classpath:db/mybatis_config.xml"></property>
+		<property name="mapperLocations"
+				  value="classpath:com/heroopsys/qrcode/dao/*Mapper.xml" />
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">

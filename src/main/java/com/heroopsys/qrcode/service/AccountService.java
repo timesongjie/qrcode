@@ -27,7 +27,8 @@ public class AccountService {
     }
 
     public Pager<Account> list(Account account, Pager<Account> pager){
-        accountMapper.listAll(account, pager);
+        accountMapper.count(account);
+        List<Account> accounts = accountMapper.listAllByPager(account, pager);
         return null;
     }
 

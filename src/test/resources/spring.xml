@@ -20,22 +20,6 @@
 	</mvc:annotation-driven>
 	<aop:aspectj-autoproxy proxy-target-class="true" />
 	<tx:annotation-driven transaction-manager="txManager" />
-	<!-- Convention over configuration -->
-	<bean
-		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
-		<property name="defaultContentType" value="application/json" />
-		<property name="defaultViews">
-			<list>
-				<bean
-					class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
-					<property name="extractValueFromSingleKeyModel" value="true"></property>
-					<property name="objectMapper">
-						<bean class="com.heroopsys.qrcode.common.converter.ObjectMappingCustomer">
-						</bean>
-					</property>
-				</bean>
-			</list>
-		</property>
-	</bean>
 	<import resource="spring-db.xml" />
+	<import resource="qrcode-servlet.xml"/>
 </beans>

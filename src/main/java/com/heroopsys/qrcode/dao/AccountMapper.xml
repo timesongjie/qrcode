@@ -9,4 +9,19 @@
     <select id="queryByNameAndPwd" resultMap="accountMap" parameterType="java.util.Map">
         select id,user_name from t_qrcode_account where user_name=#{name} and password=#{password}
     </select>
+
+    <select id="listAllByPager" resultMap="accountMap" parameterType="java.util.Map">
+        select id,user_name from t_qrcode_account where 1 =1
+        <if test="account.name != null">
+            and  user_name=#{account.name}
+        </if>
+        limit ${page.offset},${page.rows}
+    </select>
+
+    <select id="count" resultType="int" parameterType="java.util.Map">
+        select count(*) from t_qrcode_account where 1 =1
+        <if test="name != null">
+            and user_name=#{name}
+        </if>
+    </select>
 </mapper>

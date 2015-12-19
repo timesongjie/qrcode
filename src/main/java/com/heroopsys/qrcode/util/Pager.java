@@ -18,6 +18,8 @@ public class Pager<T> implements Serializable {
 
     private int rows = 10;// 每页显示记录数
 
+    private int offset = 0;
+
     private String sort;// 排序字段
 
     private String order = OrderType.asc.name();// asc/desc
@@ -79,5 +81,9 @@ public class Pager<T> implements Serializable {
             this.page = 1;
         }
         return (this.page - 1) * rows;
+    }
+
+    public void setOffset(int offset) {
+        this.offset = offset;
     }
 }
