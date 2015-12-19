@@ -22,7 +22,7 @@ public class MapperTest {
         Account account = new Account();
         account.setName("hello");
         account.setPassword("123456");
-        session.getMapper(AccountMapper.class).add(account);
+        session.getMapper(AccountMapper.class).addAccount(account);
     }
 
 }

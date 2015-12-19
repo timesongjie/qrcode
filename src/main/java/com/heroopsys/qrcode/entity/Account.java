@@ -5,8 +5,19 @@ package com.heroopsys.qrcode.entity;
  */
 public class Account {
 
+    private Long id;
     private String name;
     private String password;
+    private Byte status;
+
+    public Account() {
+
+    }
+
+    public Account(String name, String password) {
+        this.password = password;
+        this.name = name;
+    }
 
     public String getName() {
         return name;
@@ -22,5 +33,21 @@ public class Account {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Byte getStatus() {
+        return status;
+    }
+
+    public void setStatus(Byte status) {
+        this.status = status;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
