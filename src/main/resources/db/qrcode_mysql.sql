@@ -22,10 +22,10 @@ CREATE TABLE `t_qrcode_device` (
   `client_site` varchar(256) NOT NULL DEFAULT '' COMMENT '客户地址',
   `client` varchar(256) NOT NULL DEFAULT '' COMMENT '客户',
   `client_tel` varchar(256) NOT NULL DEFAULT '' COMMENT '客户电话',
-  `activation code` varchar(8) NOT NULL DEFAULT '' COMMENT '激活码',
-  `activation code2` varchar(8) NOT NULL DEFAULT '' COMMENT '激活码2',
-  `activation code3` varchar(8) NOT NULL DEFAULT '' COMMENT '激活码3',
-  `activation code4` varchar(8) NOT NULL DEFAULT '' COMMENT '激活码4',
+  `activation_code` varchar(8) NOT NULL DEFAULT '' COMMENT '激活码',
+  `activation_code2` varchar(8) NOT NULL DEFAULT '' COMMENT '激活码2',
+  `activation_code3` varchar(8) NOT NULL DEFAULT '' COMMENT '激活码3',
+  `activation_code4` varchar(8) NOT NULL DEFAULT '' COMMENT '激活码4',
   `wlan` varchar(20) NOT NULL DEFAULT '' COMMENT '无线路由',
   `sim_phone` varchar(11) NOT NULL DEFAULT '' COMMENT 'sim手机号',
   `sim_fee` varchar(20) NOT NULL DEFAULT '' COMMENT 'sim资费',
@@ -40,7 +40,7 @@ CREATE TABLE `t_qrcode_service_type` (
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COMMENT='服务类型表';
 
 CREATE TABLE `t_qrcode_service` (
-  `id` int(2) NOT NULL AUTO_INCREMENT COMMENT '服务流水号',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '服务流水号',
   `service_type_id` int(2) NOT NULL  COMMENT '服务类型流水号',
   `device_code` varchar(256) NOT NULL DEFAULT '' COMMENT '设备编码',
   `service_name` varchar(256) NOT NULL DEFAULT '' COMMENT '服务人',

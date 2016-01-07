@@ -7,6 +7,7 @@ import com.heroopsys.qrcode.util.Pager;
 import com.heroopsys.qrcode.util.Result;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -21,12 +22,16 @@ public class AccountController {
     @Resource
     private AccountService accountService;
 
-    @RequestMapping("/login")
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
     public Result login(String username, String password, HttpServletRequest request) {
         Account account = new Account(username, password);
-        accountService.login(account);
-        request.getSession().setAttribute("account_info", account);
-        return new Result("登陆成功!", true);
+        if(accountService.login(account) != null){
+            account.setPassword(null);
+            request.getSession().setAttribute("account_info", account);
+            return new Result("登陆成功!", true);
+        }else{
+            return new Result("登陆失败!", false);
+        }
     }
 
     @RequestMapping("/logout")
@@ -36,7 +41,7 @@ public class AccountController {
     }
 
 
-    @RequestMapping("/list")
+    @RequestMapping(value = "/list",method = RequestMethod.GET)
     public Grid<Account> list(Integer page,Integer rows){
         if(page == null){
             page = 1;
@@ -53,5 +58,11 @@ public class AccountController {
         grid.setRows(pager.getDataList());
         grid.setTotal(pager.getTotal());
         return grid;
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public Result addAccount(){
+        String test = "test";
+        return new Result("添加成功!", true);
     }
 }

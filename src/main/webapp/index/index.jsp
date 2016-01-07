@@ -19,7 +19,7 @@
 				children: [{
 					text: '用户列表',
 					"attributes":{
-						"url":"/qrcode/account/list"
+						"url":"/account/accountGrid.jsp"
 					}
 				}]
 			},{

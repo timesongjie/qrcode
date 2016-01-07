@@ -45,7 +45,8 @@ public class AuthFilter implements Filter {
         String reqURL = req.getRequestURI();
         return !reqURL.endsWith("css") && !reqURL.endsWith("js") && !reqURL.endsWith("png")  && !reqURL.endsWith("gif")
                 && !reqURL.endsWith("/login.jsp") && !reqURL.endsWith("/login")
-                && !reqURL.endsWith("/logout") ? Boolean.FALSE : Boolean.TRUE;
+                && !reqURL.endsWith("/logout")
+                && !reqURL.contains("/api")? Boolean.FALSE : Boolean.TRUE;
     }
 
     private String getLoginURI(HttpServletRequest req) {

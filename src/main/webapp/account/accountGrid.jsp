@@ -3,6 +3,7 @@
 <jsp:include page="/common/common.jsp"></jsp:include>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:url var="accountDataGridAction" value="/qrcode/account/list"></c:url>
+<c:url var="addAccountAction" value="/account/accountAdd.jsp"></c:url>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,7 +17,7 @@
             var dialog = parent.modalDialog({
                 title: '新增账号信息',
                 url: '${addAccountAction}',
-                height: 260,
+                height: 150,
                 width: 450,
                 buttons: [{
                     text: '添加',
@@ -129,28 +130,12 @@
             });
         }
 
-        var resetPwd = function () {
-            var accountArr = accountGrid.datagrid("getSelections");
-            parent.$.messager.confirm('询问', '您确定要重置此账号密码？', function (r) {
-                if (r) {
-                    $.post("${resetAccountAction}?account.accountId=" + accountArr[0].accountId, {
-                        //id : accountArr[0].id
-                    }, function (data) {
-                        if (data.success) {
-                            parent.$.messager.alert("提示", data.msg, "info");
-                        } else {
-                            parent.$.messager.alert("提示", data.msg, "error");
-                        }
-                        return;
-                    }, 'json');
-                }
-            });
-        }
         $(function () {
             accountGrid = $("#accountGrid").datagrid({
                 fit: true,
                 title: '',
                 url: '${accountDataGridAction}',
+                method:"GET",
                 pagination: true,
                 singleSelect: true,
                 rownumbers: true,
@@ -162,23 +147,16 @@
                 pageSize: 20,
                 pageList: [10, 20, 30, 40, 50],
                 columns: [[{
-                    width: '100',
                     title: '账号ID',
                     field: 'id',
-                    sortable: true,
+                    sortable: false,
                     hidden: true
                 }, {
-                    width: '200',
                     title: '账号名称',
-                    field: 'accountId',
-                    sortable: true
+                    field: 'name',
+                    sortable: false,
+                    width:200
                 }, {
-                    width: '200',
-                    title: '手机号码',
-                    field: 'phoneNumber',
-                    sortable: true
-                }, {
-                    width: '100',
                     title: '状态',
                     field: 'status',
                     sortable: true,

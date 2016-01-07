@@ -3,7 +3,7 @@ package com.heroopsys.qrcode.common.vo;
 import org.apache.commons.lang.StringUtils;
 
 public class Result<T> {
-    private Boolean result = true;
+    private Byte status ;
 
     private String msg = StringUtils.EMPTY;
 
@@ -17,12 +17,12 @@ public class Result<T> {
         this.msg = msg;
     }
 
-    public Boolean getResult() {
-        return result;
+    public Byte getStatus() {
+        return status;
     }
 
-    public void setResult(Boolean result) {
-        this.result = result;
+    public void setStatus(Byte status) {
+        this.status = status;
     }
 
     public T getData() {

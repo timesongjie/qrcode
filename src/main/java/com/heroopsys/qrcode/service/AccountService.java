@@ -27,9 +27,10 @@ public class AccountService {
     }
 
     public Pager<Account> list(Account account, Pager<Account> pager){
-        accountMapper.count(account);
+        pager.setTotal(accountMapper.count(account));
         List<Account> accounts = accountMapper.listAllByPager(account, pager);
-        return null;
+        pager.setDataList(accounts);
+        return pager;
     }
 
     public Account login(Account account){
