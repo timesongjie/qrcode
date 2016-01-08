@@ -1,12 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<jsp:include page="/auth/common/common.jsp"></jsp:include>
+<jsp:include page="/common/common.jsp"></jsp:include>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <c:set value="${pageContext.request.contextPath }" var="ctx"></c:set>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<s:url namespace="/auth/account" action="grantPermissionSubmit.action" var="grantPermissionAction"></s:url>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

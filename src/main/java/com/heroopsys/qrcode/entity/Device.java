@@ -1,50 +1,57 @@
 package com.heroopsys.qrcode.entity;
 
 import java.util.Date;
-import java.util.List;
 
-/**
- * Created by time on 15-12-22.
- */
 public class Device {
-    private Long id = 0l;
-    private String deviceCode = "4938c918f9a24d5cb2df10fd898b8246";
-    private String deviceModel = "4938c918f9a24d5cb2df10fd898b8246";
-    private String deviceQrcode ="4938c918f9a24d5cb2df10fd898b8246";
-    private String projectName ="设备1";
-    private String projectLeader ="hk";
-    private String projectOthers="hk";
-    private Date debugDate = new Date();
-    private Date finishDate= new Date();
-    private String contractPoint = "合同指标";
-    private String clientName = "hk公司";
-    private String clientSite ="湖南长沙";
-    private String client="hk";
-    private String clientTel="07318888888";
-    private String activationCode="4938c918f9a24d5cb2df10fd898b8246";
+    private Integer id;
+
+    private String deviceCode;
+
+    private String deviceModel;
+
+    private String deviceQrcode;
+
+    private String projectName;
+
+    private String projectLeader;
+
+    private String projectOthers;
+
+    private Date debugDate;
+
+    private Date finishDate;
+
+    private String contractPoint;
+
+    private String clientName;
+
+    private String clientSite;
+
+    private String client;
+
+    private String clientTel;
+
+    private String activationCode;
+
     private String activationCode2;
+
     private String activationCode3;
+
     private String activationCode4;
-    private String wlan="hk";
-    private String simPhone="13800000000";
-    private String simFee="120元/月";
-    private String bak="xxxxxxxxxx";
-    private List<DeviceService> services;
 
+    private String wlan;
 
-    public String getClient() {
-        return client;
-    }
+    private String simPhone;
 
-    public void setClient(String client) {
-        this.client = client;
-    }
+    private String simFee;
 
-    public Long getId() {
+    private String bak;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -53,7 +60,7 @@ public class Device {
     }
 
     public void setDeviceCode(String deviceCode) {
-        this.deviceCode = deviceCode;
+        this.deviceCode = deviceCode == null ? null : deviceCode.trim();
     }
 
     public String getDeviceModel() {
@@ -61,7 +68,7 @@ public class Device {
     }
 
     public void setDeviceModel(String deviceModel) {
-        this.deviceModel = deviceModel;
+        this.deviceModel = deviceModel == null ? null : deviceModel.trim();
     }
 
     public String getDeviceQrcode() {
@@ -69,7 +76,7 @@ public class Device {
     }
 
     public void setDeviceQrcode(String deviceQrcode) {
-        this.deviceQrcode = deviceQrcode;
+        this.deviceQrcode = deviceQrcode == null ? null : deviceQrcode.trim();
     }
 
     public String getProjectName() {
@@ -77,7 +84,7 @@ public class Device {
     }
 
     public void setProjectName(String projectName) {
-        this.projectName = projectName;
+        this.projectName = projectName == null ? null : projectName.trim();
     }
 
     public String getProjectLeader() {
@@ -85,7 +92,7 @@ public class Device {
     }
 
     public void setProjectLeader(String projectLeader) {
-        this.projectLeader = projectLeader;
+        this.projectLeader = projectLeader == null ? null : projectLeader.trim();
     }
 
     public String getProjectOthers() {
@@ -93,7 +100,7 @@ public class Device {
     }
 
     public void setProjectOthers(String projectOthers) {
-        this.projectOthers = projectOthers;
+        this.projectOthers = projectOthers == null ? null : projectOthers.trim();
     }
 
     public Date getDebugDate() {
@@ -117,7 +124,7 @@ public class Device {
     }
 
     public void setContractPoint(String contractPoint) {
-        this.contractPoint = contractPoint;
+        this.contractPoint = contractPoint == null ? null : contractPoint.trim();
     }
 
     public String getClientName() {
@@ -125,7 +132,7 @@ public class Device {
     }
 
     public void setClientName(String clientName) {
-        this.clientName = clientName;
+        this.clientName = clientName == null ? null : clientName.trim();
     }
 
     public String getClientSite() {
@@ -133,7 +140,15 @@ public class Device {
     }
 
     public void setClientSite(String clientSite) {
-        this.clientSite = clientSite;
+        this.clientSite = clientSite == null ? null : clientSite.trim();
+    }
+
+    public String getClient() {
+        return client;
+    }
+
+    public void setClient(String client) {
+        this.client = client == null ? null : client.trim();
     }
 
     public String getClientTel() {
@@ -141,7 +156,7 @@ public class Device {
     }
 
     public void setClientTel(String clientTel) {
-        this.clientTel = clientTel;
+        this.clientTel = clientTel == null ? null : clientTel.trim();
     }
 
     public String getActivationCode() {
@@ -149,7 +164,7 @@ public class Device {
     }
 
     public void setActivationCode(String activationCode) {
-        this.activationCode = activationCode;
+        this.activationCode = activationCode == null ? null : activationCode.trim();
     }
 
     public String getActivationCode2() {
@@ -157,7 +172,7 @@ public class Device {
     }
 
     public void setActivationCode2(String activationCode2) {
-        this.activationCode2 = activationCode2;
+        this.activationCode2 = activationCode2 == null ? null : activationCode2.trim();
     }
 
     public String getActivationCode3() {
@@ -165,7 +180,7 @@ public class Device {
     }
 
     public void setActivationCode3(String activationCode3) {
-        this.activationCode3 = activationCode3;
+        this.activationCode3 = activationCode3 == null ? null : activationCode3.trim();
     }
 
     public String getActivationCode4() {
@@ -173,7 +188,7 @@ public class Device {
     }
 
     public void setActivationCode4(String activationCode4) {
-        this.activationCode4 = activationCode4;
+        this.activationCode4 = activationCode4 == null ? null : activationCode4.trim();
     }
 
     public String getWlan() {
@@ -181,7 +196,7 @@ public class Device {
     }
 
     public void setWlan(String wlan) {
-        this.wlan = wlan;
+        this.wlan = wlan == null ? null : wlan.trim();
     }
 
     public String getSimPhone() {
@@ -189,7 +204,7 @@ public class Device {
     }
 
     public void setSimPhone(String simPhone) {
-        this.simPhone = simPhone;
+        this.simPhone = simPhone == null ? null : simPhone.trim();
     }
 
     public String getSimFee() {
@@ -197,7 +212,7 @@ public class Device {
     }
 
     public void setSimFee(String simFee) {
-        this.simFee = simFee;
+        this.simFee = simFee == null ? null : simFee.trim();
     }
 
     public String getBak() {
@@ -205,14 +220,6 @@ public class Device {
     }
 
     public void setBak(String bak) {
-        this.bak = bak;
-    }
-
-    public List<DeviceService> getServices() {
-        return services;
-    }
-
-    public void setServices(List<DeviceService> services) {
-        this.services = services;
+        this.bak = bak == null ? null : bak.trim();
     }
 }
