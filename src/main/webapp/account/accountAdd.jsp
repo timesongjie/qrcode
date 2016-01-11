@@ -67,31 +67,31 @@
 			<tr>
 				<th>账号名称</th>
 				<td>
-					<input type="text" name="account.name" data-options="required:true,validType:['length[0,256]', 'nonChinese']"
+					<input type="text" name="name" data-options="required:true,validType:['length[0,256]', 'nonChinese']"
 						class="easyui-validatebox" missingMessage="账号名称不能为空"  style="width:260px"/>
 				</td>
 			</tr>
 			<tr>
 				<th>密码</th>
 				<td>
-					<input type="password" name="account.password" data-options="required:true,validType:['password']"
+					<input type="password" name="password" data-options="required:true,validType:['password']"
 						class="easyui-validatebox" missingMessage="密码不能为空"  style="width:260px"/>
 				</td>
 			</tr>
 			<tr>
 				<th>电话号码</th>
 				<td>
-					<input type="text" name="account.phoneNumber" data-options="required:true,validType:['phoneNumber']"
+					<input type="text" name="phoneNumber" data-options="required:true,validType:['phoneNumber']"
 						class="easyui-validatebox" missingMessage="手机号码不能为空"  style="width:260px"/>
 				</td>
 			</tr>
 			<tr>
 				<th>状态</th>
 				<td>
-					<select id="status" class="easyui-combobox" name="account.status"
+					<select id="status" class="easyui-combobox" name="status"
 							data-options="required:true,panelHeight:'auto',editable:false"  style="width:260px;">
-						<option value="1">未激活</option>
 						<option value="0">激活</option>
+						<option value="1">未激活</option>
 				    </select>
 				</td>
 			</tr>

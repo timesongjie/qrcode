@@ -10,16 +10,16 @@ import java.util.List;
  * Created by time on 15-12-14.
  */
 public interface AccountMapper {
-    public Integer addAccount(Account account);
+	public Integer addAccount(Account account);
 
-    public Integer updateStatus(Account account);
+	public Integer updateAccount(Account account);
 
-    public Integer delAccount(Account account);
+	public List<Account> listAllByPager(@Param("account") Account account,
+			@Param("page") Pager<Account> pager);
 
-    public List<Account> listAllByPager(@Param("account")Account account, @Param("page")Pager<Account> pager);
-    
-    public Account queryByNameAndPwd(Account account);
+	public Account queryAccount(Account account);
 
-    public Integer count(Account account);
+	public Integer count(Account account);
 
+	public Integer deleteAccount(Integer id);
 }

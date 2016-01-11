@@ -4,6 +4,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:url var="accountDataGridAction" value="/mvc/account/list"></c:url>
 <c:url var="addAccountAction" value="/account/accountAdd.jsp"></c:url>
+<c:url var="editAccountAction" value="/mvc/account"></c:url>
+<c:url var="deleteAccountAction" value="/mvc/account"></c:url>
+
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -42,8 +47,8 @@
             }
             var dialog = parent.modalDialog({
                 title: '编辑账号信息',
-                url: '${editAccountAction}?account.id=' + accountArr[0].id,
-                height: 260,
+                url: '${editAccountAction}/' + accountArr[0].id,
+                height: 200,
                 width: 450,
                 buttons: [{
                     text: '编辑',
@@ -68,17 +73,21 @@
             }
             parent.$.messager.confirm('询问', '您确定要删除此账号？', function (r) {
                 if (r) {
-                    $.post("${deleteAccountAction}?account.id=" + accountArr[0].id, {
-                        //id : accountArr[0].id
-                    }, function (data) {
-                        accountGrid.datagrid('reload');
-                        if (data.success) {
-                            parent.$.messager.alert("提示", data.msg, "info");
-                        } else {
-                            parent.$.messager.alert("提示", data.msg, "error");
+                    $.ajax({
+                    	url:"${deleteAccountAction}/" + accountArr[0].id,
+                    	contentType:"application/json",
+                    	dataType:"json",
+                    	type:"delete",
+                    	success:function (data) {
+                            accountGrid.datagrid('reload');
+                            if (data.success) {
+                                parent.$.messager.alert("提示", data.msg, "info");
+                            } else {
+                                parent.$.messager.alert("提示", data.msg, "error");
+                            }
+                            return;
                         }
-                        return;
-                    }, 'json');
+                    });
                 }
             });
         }
