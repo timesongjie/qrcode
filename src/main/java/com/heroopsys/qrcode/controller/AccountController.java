@@ -24,7 +24,7 @@ public class AccountController {
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public Result login(String username, String password, HttpServletRequest request) {
-        Account account = new Account(username, password);
+    	Account account = new Account(username, password);
         if(accountService.login(account) != null){
             account.setPassword(null);
             request.getSession().setAttribute("account_info", account);

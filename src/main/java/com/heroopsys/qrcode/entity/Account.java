@@ -9,6 +9,7 @@ public class Account {
     private String name;
     private String password;
     private Byte status;
+    private String phoneNumber;
 
     public Account() {
 
@@ -50,4 +51,12 @@ public class Account {
     public void setId(Long id) {
         this.id = id;
     }
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
 }

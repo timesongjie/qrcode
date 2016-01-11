@@ -3,83 +3,96 @@ package com.heroopsys.qrcode.entity;
 import java.util.Date;
 
 public class Service {
-    private Integer id;
+	private Integer id;
 
-    private Integer serviceTypeId;
+	private Integer serviceTypeId;
 
-    private String deviceCode;
+	private String deviceCode;
 
-    private String serviceName;
+	private String serviceName;
 
-    private Date serviceDate;
+	private Date serviceDate;
 
-    private String serviceLocation;
+	private String serviceLocation;
 
-    private String serviceContent;
+	private String serviceContent;
 
-    private String bak;
+	private String bak;
 
-    public Integer getId() {
-        return id;
-    }
+	private ServiceType serviceType;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public Integer getServiceTypeId() {
-        return serviceTypeId;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public void setServiceTypeId(Integer serviceTypeId) {
-        this.serviceTypeId = serviceTypeId;
-    }
+	public Integer getServiceTypeId() {
+		return serviceTypeId;
+	}
 
-    public String getDeviceCode() {
-        return deviceCode;
-    }
+	public void setServiceTypeId(Integer serviceTypeId) {
+		this.serviceTypeId = serviceTypeId;
+	}
 
-    public void setDeviceCode(String deviceCode) {
-        this.deviceCode = deviceCode == null ? null : deviceCode.trim();
-    }
+	public String getDeviceCode() {
+		return deviceCode;
+	}
 
-    public String getServiceName() {
-        return serviceName;
-    }
+	public void setDeviceCode(String deviceCode) {
+		this.deviceCode = deviceCode == null ? null : deviceCode.trim();
+	}
 
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName == null ? null : serviceName.trim();
-    }
+	public String getServiceName() {
+		return serviceName;
+	}
 
-    public Date getServiceDate() {
-        return serviceDate;
-    }
+	public void setServiceName(String serviceName) {
+		this.serviceName = serviceName == null ? null : serviceName.trim();
+	}
 
-    public void setServiceDate(Date serviceDate) {
-        this.serviceDate = serviceDate;
-    }
+	public Date getServiceDate() {
+		return serviceDate;
+	}
 
-    public String getServiceLocation() {
-        return serviceLocation;
-    }
+	public void setServiceDate(Date serviceDate) {
+		this.serviceDate = serviceDate;
+	}
 
-    public void setServiceLocation(String serviceLocation) {
-        this.serviceLocation = serviceLocation == null ? null : serviceLocation.trim();
-    }
+	public String getServiceLocation() {
+		return serviceLocation;
+	}
 
-    public String getServiceContent() {
-        return serviceContent;
-    }
+	public void setServiceLocation(String serviceLocation) {
+		this.serviceLocation = serviceLocation == null ? null : serviceLocation
+				.trim();
+	}
 
-    public void setServiceContent(String serviceContent) {
-        this.serviceContent = serviceContent == null ? null : serviceContent.trim();
-    }
+	public String getServiceContent() {
+		return serviceContent;
+	}
 
-    public String getBak() {
-        return bak;
-    }
+	public void setServiceContent(String serviceContent) {
+		this.serviceContent = serviceContent == null ? null : serviceContent
+				.trim();
+	}
 
-    public void setBak(String bak) {
-        this.bak = bak == null ? null : bak.trim();
-    }
+	public String getBak() {
+		return bak;
+	}
+
+	public void setBak(String bak) {
+		this.bak = bak == null ? null : bak.trim();
+	}
+
+	public ServiceType getServiceType() {
+		return serviceType;
+	}
+
+	public void setServiceType(ServiceType serviceType) {
+		this.serviceType = serviceType;
+	}
+
 }

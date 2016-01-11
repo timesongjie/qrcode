@@ -4,6 +4,8 @@
     <resultMap id="accountMap" type="com.heroopsys.qrcode.entity.Account">
         <id column="id" jdbcType="INTEGER" property="id" />
         <result column="user_name" jdbcType="VARCHAR" property="userName" />
+        <result column="status" jdbcType="TINYINT" property="status" />
+        <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
     </resultMap>
 
     <select id="queryByNameAndPwd" resultMap="accountMap" parameterType="java.util.Map">
@@ -11,7 +13,7 @@
     </select>
 
     <select id="listAllByPager" resultMap="accountMap" parameterType="java.util.Map">
-        select id,user_name as name,status from t_qrcode_account where 1 =1
+        select id,user_name as name,status,phone_number as phoneNumber from t_qrcode_account where 1 =1
         <if test="account.name != null">
             and  user_name=#{account.name}
         </if>

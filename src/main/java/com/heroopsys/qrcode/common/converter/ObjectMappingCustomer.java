@@ -8,16 +8,17 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ObjectMappingCustomer extends ObjectMapper {
-    /**
-     * serialVersionUID <br>
-     */
-    private static final long serialVersionUID = -9041338519064361476L;
+	/**
+	 * serialVersionUID <br>
+	 */
+	private static final long serialVersionUID = -9041338519064361476L;
 
-    public ObjectMappingCustomer() {
-        super();
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        super.setDateFormat(df);
-        super.setSerializationInclusion(Include.NON_NULL);
-        super.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-    }
+	public ObjectMappingCustomer() {
+		super();
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		super.setDateFormat(df);
+		super.setSerializationInclusion(Include.NON_NULL);
+		super.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
+				false);
+	}
 }

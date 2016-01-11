@@ -1,25 +1,23 @@
 package com.heroopsys.qrcode.entity;
 
-/**
- * Created by time on 15-12-22.
- */
 public class ServiceType {
-    private Integer id = 1;
-    private String name = "售前";
+	private Integer id;
 
-    public Integer getId() {
-        return id;
-    }
+	private String serviceType;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getServiceType() {
+		return serviceType;
+	}
+
+	public void setServiceType(String serviceType) {
+		this.serviceType = serviceType == null ? null : serviceType.trim();
+	}
 }
