@@ -2,7 +2,7 @@
          pageEncoding="UTF-8" %>
 <jsp:include page="/common/common.jsp"></jsp:include>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:url var="accountDataGridAction" value="/qrcode/account/list"></c:url>
+<c:url var="accountDataGridAction" value="/mvc/account/list"></c:url>
 <c:url var="addAccountAction" value="/account/accountAdd.jsp"></c:url>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -17,7 +17,7 @@
             var dialog = parent.modalDialog({
                 title: '新增账号信息',
                 url: '${addAccountAction}',
-                height: 150,
+                height: 200,
                 width: 450,
                 buttons: [{
                     text: '添加',
@@ -156,7 +156,12 @@
                     field: 'name',
                     sortable: false,
                     width:200
-                }, {
+                },  {
+                    title: '手机号码',
+                    field: 'phoneNumber',
+                    sortable: false,
+                    width:200
+                },{
                     title: '状态',
                     field: 'status',
                     sortable: true,

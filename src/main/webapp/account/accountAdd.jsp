@@ -3,9 +3,7 @@
 <jsp:include page="/common/common.jsp"></jsp:include>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<s:url namespace="/auth/account" action="addSubmit.action" var="addAccountAction"></s:url>
-<s:url namespace="/auth/account" action="systems.action" var="allSystemsAction"></s:url>
-<s:url namespace="/auth/account" action="othersystems.action" var="otherSystemsAction"></s:url>
+<c:url var="addAccountAction" value="/mvc/account"></c:url>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -64,13 +62,27 @@
 </script>
 </head>
 <body class="easyui-layout" data-options="fit:true,border:false">
-	<form action="${addAccountAction }" id="accountForm">
+	<form action="${addAccountAction }" id="accountForm" method="post">
 		<table width="100%" class="table tabs-title">
 			<tr>
 				<th>账号名称</th>
 				<td>
-					<input type="text" name="account.accountId" data-options="required:true,validType:['length[0,256]', 'nonChinese']"
+					<input type="text" name="account.name" data-options="required:true,validType:['length[0,256]', 'nonChinese']"
 						class="easyui-validatebox" missingMessage="账号名称不能为空"  style="width:260px"/>
+				</td>
+			</tr>
+			<tr>
+				<th>密码</th>
+				<td>
+					<input type="password" name="account.password" data-options="required:true,validType:['password']"
+						class="easyui-validatebox" missingMessage="密码不能为空"  style="width:260px"/>
+				</td>
+			</tr>
+			<tr>
+				<th>电话号码</th>
+				<td>
+					<input type="text" name="account.phoneNumber" data-options="required:true,validType:['phoneNumber']"
+						class="easyui-validatebox" missingMessage="手机号码不能为空"  style="width:260px"/>
 				</td>
 			</tr>
 			<tr>

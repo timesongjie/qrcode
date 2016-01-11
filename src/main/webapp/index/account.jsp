@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:url value="/qrcode/account/logout" var="logoutAction"></c:url>
-<c:url value="/index/login.jsp" var="loginAction"></c:url>
+<c:url value="${ctx}/mvc/account/logout" var="logoutAction"></c:url>
+<c:url value="${ctx}/index/login.jsp" var="loginAction"></c:url>
 <script type="text/javascript" charset="utf-8">
 	var logoutFun = function() {
 		$.post('${logoutAction}', function(result) {

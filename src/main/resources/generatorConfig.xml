@@ -32,25 +32,26 @@
 			targetPackage="com.heroopsys.qrcode.dao" targetProject="src/main/java">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
-		<table tableName="t_qrcode_device" domainObjectName="Device"
-				enableCountByExample="true" enableSelectByExample="true"
-				enableUpdateByExample="false" enableDeleteByExample="false">
+
+		<table tableName="t_qrcode_service_type" domainObjectName="ServiceType"
+			enableCountByExample="false" enableSelectByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false">
 		</table>
-		<table tableName="t_qrcode_service_type" domainObjectName="DeviceServiceType"
-				enableCountByExample="false" enableSelectByExample="false"
-				enableUpdateByExample="false" enableDeleteByExample="false">
+		<!-- <table tableName="t_qrcode_device" domainObjectName="Device"
+			enableCountByExample="true" enableSelectByExample="true"
+			enableUpdateByExample="false" enableDeleteByExample="false">
 		</table>
 		<table tableName="t_qrcode_service" domainObjectName="Service"
-				enableCountByExample="false" enableSelectByExample="false"
-				enableUpdateByExample="false" enableDeleteByExample="false">
+			enableCountByExample="false" enableSelectByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false">
 		</table>
-			<table tableName="t_qrcode_permission" domainObjectName="Permission"
-				enableCountByExample="false" enableSelectByExample="false"
-				enableUpdateByExample="false" enableDeleteByExample="false">
+		<table tableName="t_qrcode_permission" domainObjectName="Permission"
+			enableCountByExample="false" enableSelectByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false">
 		</table>
-			<table tableName="t_qrcode_notice" domainObjectName="Notice"
-				enableCountByExample="false" enableSelectByExample="false"
-				enableUpdateByExample="false" enableDeleteByExample="false">
-		</table>
+		<table tableName="t_qrcode_notice" domainObjectName="Notice"
+			enableCountByExample="false" enableSelectByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false">
+		</table> -->
 	</context>
 </generatorConfiguration>

@@ -47,7 +47,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>qrcode</servlet-name>
-    <url-pattern>/qrcode/*</url-pattern>
+    <url-pattern>/mvc/*</url-pattern>
   </servlet-mapping>
   <error-page>
     <error-code>404</error-code>
