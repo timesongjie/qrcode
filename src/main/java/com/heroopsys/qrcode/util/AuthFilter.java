@@ -17,58 +17,61 @@ public class AuthFilter implements Filter {
     }
 
     @Override
-    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
-        HttpServletRequest httpReq = (HttpServletRequest) req;
-        if (!this.hasLogined(httpReq).booleanValue() && !this.isAllowedURL(httpReq).booleanValue()) {
-            ((HttpServletResponse) resp).sendRedirect(this.getLoginURI(httpReq));
-        } else if (this.isLoginUrl(httpReq) && this.hasLogined(httpReq).booleanValue()) {
-            ((HttpServletResponse) resp).sendRedirect(this.getIndexURI(httpReq));
-        } else {
-            chain.doFilter(req, resp);
-        }
+    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException,
+	    ServletException {
+	HttpServletRequest httpReq = (HttpServletRequest) req;
+	if (!this.hasLogined(httpReq).booleanValue() && !this.isAllowedURL(httpReq).booleanValue()) {
+	    ((HttpServletResponse) resp).sendRedirect(this.getLoginURI(httpReq));
+	} else if (this.isLoginUrl(httpReq) && this.hasLogined(httpReq).booleanValue()) {
+	    ((HttpServletResponse) resp).sendRedirect(this.getIndexURI(httpReq));
+	} else {
+	    chain.doFilter(req, resp);
+	}
     }
 
     @Override
     public void destroy() {
 
     }
+
     private String getIndexURI(HttpServletRequest httpReq) {
-        String url = httpReq.getContextPath() + "/index/index.jsp";
-        return url.replaceAll("/{2,}", "/");
+	String url = httpReq.getContextPath() + "/index/index.jsp";
+	return url.replaceAll("/{2,}", "/");
     }
 
     protected boolean isLoginUrl(HttpServletRequest req) {
-        String reqURL = req.getRequestURI();
-        return reqURL.endsWith("/login.jsp") || reqURL.endsWith("/login");
+	String reqURL = req.getRequestURI();
+	return reqURL.endsWith("/login.jsp") || reqURL.endsWith("/login");
     }
+
     protected Boolean isAllowedURL(HttpServletRequest req) {
-        String reqURL = req.getRequestURI();
-        return !reqURL.endsWith("css") && !reqURL.endsWith("js") && !reqURL.endsWith("png")  && !reqURL.endsWith("gif")
-                && !reqURL.endsWith("/login.jsp") && !reqURL.endsWith("/login")
-                && !reqURL.endsWith("/logout")
-                && !reqURL.contains("/api")? Boolean.FALSE : Boolean.TRUE;
+	String reqURL = req.getRequestURI();
+	return !reqURL.endsWith("css") && !reqURL.endsWith("js") && !reqURL.endsWith("png") && !reqURL.endsWith("gif")
+		&& !reqURL.endsWith("/login.jsp") && !reqURL.endsWith("/login") && !reqURL.endsWith("/logout")
+		&& !reqURL.contains("/api") ? Boolean.FALSE : Boolean.TRUE;
     }
 
     private String getLoginURI(HttpServletRequest req) {
-        String url = req.getContextPath() + "/index/login.jsp";
-        return url.replaceAll("/{2,}", "/");
+	String url = req.getContextPath() + "/index/login.jsp";
+	return url.replaceAll("/{2,}", "/");
     }
 
     public Boolean hasLogined(HttpServletRequest req) throws IOException {
-        Account user = findUser(req);
+	Account user = findUser(req);
 
-        if (null == user)
-            return Boolean.FALSE;
+	if (null == user)
+	    return Boolean.FALSE;
 
-        return Boolean.TRUE;
+	return Boolean.TRUE;
 
     }
+
     private Account findUser(HttpServletRequest req) {
 
-        Account user = null;
-        if (req.getSession().getAttribute("account_info") != null) {
-            user = (Account) (req.getSession().getAttribute("account_info"));
-        }
-        return user;
+	Account user = null;
+	if (req.getSession().getAttribute("account_info") != null) {
+	    user = (Account) (req.getSession().getAttribute("account_info"));
+	}
+	return user;
     }
 }

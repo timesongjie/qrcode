@@ -14,11 +14,11 @@ public class BaseJunitTest {
     private static final ObjectMapper objMapper = new ObjectMapper();
 
     static {
-        objMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+	objMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
     }
 
     public static ObjectMapper getObjMapper() {
-        return objMapper;
+	return objMapper;
     }
 
 }

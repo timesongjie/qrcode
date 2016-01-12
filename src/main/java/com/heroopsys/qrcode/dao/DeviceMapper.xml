@@ -27,7 +27,7 @@
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
         <if test="criteria.valid" >
           <trim prefix="(" suffix=")" prefixOverrides="and" >
             <foreach collection="criteria.criteria" item="criterion" >
@@ -60,18 +60,21 @@
     activation_code, activation_code2, activation_code3, activation_code4, wlan, sim_phone, 
     sim_fee, bak
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.heroopsys.qrcode.entity.DeviceExample" >
+  <select id="selectByExampleAndPager" resultMap="BaseResultMap" parameterType="java.util.Map" >
     select
-    <if test="distinct" >
+    <if test="example.distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
     from t_qrcode_device
-    <if test="_parameter != null" >
+    <if test="example != null" >
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
+    <if test="example.orderByClause != null" >
+      order by ${example.orderByClause}
+    </if>
+    <if test="page != null" >
+        limit ${page.offset},${page.rows}
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -241,7 +244,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.heroopsys.qrcode.entity.DeviceExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="java.util.Map" resultType="java.lang.Integer" >
     select count(*) from t_qrcode_device
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />

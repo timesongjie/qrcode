@@ -10,26 +10,26 @@ public class Notice {
     private Date addDate;
 
     public Integer getId() {
-        return id;
+	return id;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+	this.id = id;
     }
 
     public String getNotice() {
-        return notice;
+	return notice;
     }
 
     public void setNotice(String notice) {
-        this.notice = notice == null ? null : notice.trim();
+	this.notice = notice == null ? null : notice.trim();
     }
 
     public Date getAddDate() {
-        return addDate;
+	return addDate;
     }
 
     public void setAddDate(Date addDate) {
-        this.addDate = addDate;
+	this.addDate = addDate;
     }
 }

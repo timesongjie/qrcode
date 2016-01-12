@@ -6,18 +6,18 @@ public class Permission {
     private String permissionName;
 
     public Integer getId() {
-        return id;
+	return id;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+	this.id = id;
     }
 
     public String getPermissionName() {
-        return permissionName;
+	return permissionName;
     }
 
     public void setPermissionName(String permissionName) {
-        this.permissionName = permissionName == null ? null : permissionName.trim();
+	this.permissionName = permissionName == null ? null : permissionName.trim();
     }
 }

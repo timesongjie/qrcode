@@ -19,25 +19,25 @@ public class Result implements Serializable {
      * @param success
      */
     public Result(String msg, boolean success) {
-        super();
-        this.msg = msg;
-        this.success = success;
+	super();
+	this.msg = msg;
+	this.success = success;
     }
 
     public String getMsg() {
-        return msg;
+	return msg;
     }
 
     public void setMsg(String msg) {
-        this.msg = msg;
+	this.msg = msg;
     }
 
     public boolean isSuccess() {
-        return success;
+	return success;
     }
 
     public void setSuccess(boolean success) {
-        this.success = success;
+	this.success = success;
     }
 
 }

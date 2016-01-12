@@ -9,6 +9,15 @@
 	<sql id="Base_Column_List">
 		id, notice, add_date
 	</sql>
+	<select id='countByNotice' parameterType="com.heroopsys.qrcode.entity.Notice"  resultType="int" >
+		select count(*) from
+		t_qrcode_notice;
+	</select>
+	<select id='selectByNotice' parameterType="java.util.Map" resultMap="BaseResultMap" >
+		select * from
+		t_qrcode_notice
+		limit ${page.offset},${page.rows};
+	</select>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
 		select
@@ -17,13 +26,16 @@
 		where id = #{id,jdbcType=INTEGER}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from t_qrcode_notice
+		delete from
+		t_qrcode_notice
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert" parameterType="com.heroopsys.qrcode.entity.Notice">
-		insert into t_qrcode_notice (id, notice, add_date
+		insert into t_qrcode_notice
+		(id, notice, add_date
 		)
-		values (#{id,jdbcType=INTEGER}, #{notice,jdbcType=VARCHAR},
+		values (#{id,jdbcType=INTEGER},
+		#{notice,jdbcType=VARCHAR},
 		#{addDate,jdbcType=TIMESTAMP}
 		)
 	</insert>
@@ -65,9 +77,11 @@
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.heroopsys.qrcode.entity.Notice">
-		update t_qrcode_notice
+		update
+		t_qrcode_notice
 		set notice = #{notice,jdbcType=VARCHAR},
-		add_date = #{addDate,jdbcType=TIMESTAMP}
+		add_date =
+		#{addDate,jdbcType=TIMESTAMP}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 </mapper>

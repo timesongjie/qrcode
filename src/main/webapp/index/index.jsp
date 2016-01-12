@@ -29,19 +29,19 @@
 					{
 						text: '产品列表',
 						"attributes":{
-							"url":"/demo/book/abc"
+							"url":"/device/deviceGrid.jsp"
 						}
 				    },{
 						text: '服务类型管理',
 						"attributes":{
-							"url":"/demo/book/abc"
+							"url":"/serviceType/serviceTypeGrid.jsp"
 						}
 				}
 				]
 			},{
 				text: '公告管理',
 				"attributes":{
-					"url":"/demo/book/abc"
+					"url":"/notice/noticeGrid.jsp"
 				}
 			}],
 			onClick : function(node) {

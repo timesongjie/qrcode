@@ -6,8 +6,8 @@ import org.springframework.ui.Model;
 
 public class BaseController {
 
-	public void doClear(Model model,String key){
-		Map map = (Map) model;
-		map.remove(key);
-	};
+    public void doClear(Model model, String key) {
+	Map map = (Map) model;
+	map.remove(key);
+    };
 }

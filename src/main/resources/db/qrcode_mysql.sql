@@ -63,3 +63,5 @@ CREATE TABLE `t_qrcode_notice` (
   `add_date` datetime COMMENT '通告时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COMMENT='通告表';
+
+ insert into t_qrcode_device(device_code,device_model,device_qrcode,project_name,project_leader,project_others,contract_point,client_name,client_site,client,client_tel,activation_code,activation_code2,activation_code4,wlan,sim_phone,sim_fee,bak)values('4938c918f9a24d5cb2df10fd898b8246','device_110','4938c918f9a24d5cb2df10fd898b8246','device_007','lucy','lili,lilei','','clientA','','','','','','','','','','');

@@ -12,18 +12,18 @@ public class Grid<T> implements Serializable {
     private Integer total;// 总记录数
 
     public List<T> getRows() {
-        return rows;
+	return rows;
     }
 
     public void setRows(List<T> rows) {
-        this.rows = rows;
+	this.rows = rows;
     }
 
     public Integer getTotal() {
-        return total;
+	return total;
     }
 
     public void setTotal(Integer total) {
-        this.total = total;
+	this.total = total;
     }
 }
