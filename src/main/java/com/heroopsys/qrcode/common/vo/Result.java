@@ -3,7 +3,7 @@ package com.heroopsys.qrcode.common.vo;
 import org.apache.commons.lang.StringUtils;
 
 public class Result<T> {
-    private Byte status;
+    private Byte status;//0 成功 1失败
 
     private String msg = StringUtils.EMPTY;
 

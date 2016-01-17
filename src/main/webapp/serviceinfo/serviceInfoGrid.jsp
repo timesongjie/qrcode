@@ -2,12 +2,7 @@
 	pageEncoding="UTF-8"%>
 <jsp:include page="/common/common.jsp"></jsp:include>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:url var="deviceDataGridAction" value="/mvc/device/list"></c:url>
-<c:url var="addAccountAction" value="/account/accountAdd.jsp"></c:url>
-<c:url var="editAccountAction" value="/mvc/account"></c:url>
-<c:url var="deleteAccountAction" value="/mvc/account"></c:url>
-
-
+<c:url var="serviceInfoDataGridAction" value="/mvc/serviceInfo/list"></c:url>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -15,60 +10,26 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
 <script type="text/javascript">
-	var deviceGrid = null;
-	//编辑设备
-	var editFun = function() {
-		var accountArr = deviceGrid.datagrid("getSelections");
-		if (accountArr && accountArr.length < 1) {
-			parent.$.messager.alert("提示", "请选择要编辑的账号", "info");
-			return;
-		}
-		var dialog = parent.modalDialog({
-			title : '编辑账号信息',
-			url : '${editAccountAction}/' + accountArr[0].id,
-			height : 200,
-			width : 450,
-			buttons : [
-					{
-						text : '编辑',
-						handler : function() {
-							dialog.find('iframe').get(0).contentWindow
-									.submitForm(dialog, deviceGrid, parent.$);
-						}
-					}, {
-						text : '取消',
-						handler : function() {
-							dialog.dialog("destroy");
-						}
-					} ]
-		});
-	}
-	//查看设备
-	var viewFun = function() {
-		var accountArr = deviceGrid.datagrid("getSelections");
-		if (accountArr && accountArr.length < 1) {
-			parent.$.messager.alert("提示", "请选择要编辑的账号", "info");
-			return;
-		}
-		var dialog = parent.modalDialog({
-			title : '查看账号信息',
-			url : '${viewAccountAction}?account.id=' + accountArr[0].id,
-			height : 260,
-			width : 450,
-			buttons : [ {
-				text : '关闭',
-				handler : function() {
-					dialog.dialog("destroy");
-				}
-			} ]
-		});
-	}
-
 	$(function() {
-		deviceGrid = $("#deviceGrid").datagrid({
+		 $("#sserviceDate").datebox({  
+	            required:true,  
+	            editable:false,
+	            onSelect: function(date){  
+	                $("#sserviceDate").val(date);  
+	            }  
+	        });  
+		 $("#eserviceDate").datebox({  
+	            required:true,
+	            editable:false,
+	            onSelect: function(date){  
+	                $("#eserviceDate").val(date);  
+	            }  
+	        });  
+		
+		serviceTypeGrid = $("#serviceTypeGrid").datagrid({
 			fit : true,
 			title : '',
-			url : '${deviceDataGridAction}',
+			url : '${serviceInfoDataGridAction}',
 			method : "GET",
 			pagination : true,
 			singleSelect : true,
@@ -85,37 +46,27 @@
 				field : 'id',
 				sortable : false,
 				hidden : true
-			},{
+			}, {
 				title : '产品编号',
 				field : 'deviceCode',
-				sortable : false,
-				hidden : true
-			}, {
-				title : '产品型号',
-				field : 'deviceModel',
-				sortable : false,
-				hidden : true
-			}, {
-				title : '产品二维码',
-				field : 'deviceQrcode',
-				sortable : false,
-				hidden : true
-			}, {
-				title : '调试时间',
-				field : 'debugDate',
-				sortable : false,
-				hidden : true
-			}, {
-				title : '完成时间',
-				field : 'finishDate',
 				sortable : false,
 				hidden : true
 			}, {
 				title : '项目名称',
 				field : 'projectName',
 				sortable : false,
-				width : 200
-			} ] ],
+				hidden : false
+			}, {
+				title : '服务类型',
+				field : 'serviceTypeId',
+				sortable : false,
+				hidden : true
+			}, {
+				title : '服务时间',
+				field : 'debugDate',
+				sortable : false,
+				hidden : true
+			}] ],
 			toolbar : '#toolbar',
 			onBeforeLoad : function(param) {
 				parent.$.messager.progress({
@@ -132,14 +83,14 @@
 			},
 			onLoadSuccess : function(data) {
 				if (data.total > 0) {
-					deviceGrid.datagrid("selectRow", 0);
+					serviceTypeGrid.datagrid("selectRow", 0);
 				}
 				parent.$.messager.progress('close');
 			}
 		});
 		$(document).keyup(function(event) {
 			if (event.keyCode == 13) {
-				deviceGrid.datagrid('load', serializeObject($('#queryForm')));
+				serviceTypeGrid.datagrid('load', serializeObject($('#queryForm')));
 			}
 		});
 	})
@@ -153,34 +104,18 @@
 					<form id="queryForm" method="post">
 						<table width="100%" border="0" class="table tabs-title">
 							<tr>
-								<th>设备编码：</th>
-								<td><input type="text" name="deviceCode"
+								<th>记录开始时间：</th>
+								<td><input type="text" name="sserviceDate" id="sserviceDate"
 									style="width: 200px;"></td>
-								<th>项目名称：</th>
-								<td><input type="text" name="projectName"
+								<th>记录结束时间：</th>
+								<td><input type="text" name="eserviceDate"  id="eserviceDate"
 									style="width: 200px;"></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th>项目经理：</th>
-								<td><input type="text" name="projectLeader"
-									style="width: 200px;"></td>
-								<th>客户名称：</th>
-								<td><input type="text" name="clientName"
-									style="width: 200px;"></td>
-								<td></td>
-							</tr>
-							<tr>
-								<th>SIM卡手机号：</th>
-								<td><input type="text" name="simPhone"
-									style="width: 200px;"></td>
-								<td colspan="2" align="center"></td>
 								<td><a href="javascript:void(0);" class="easyui-linkbutton"
 									data-options="iconCls:'ext-icon-zoom',plain:true"
-									onclick="deviceGrid.datagrid('load',serializeObject($('#queryForm')));">查询</a>
+									onclick="serviceTypeGrid.datagrid('load',serializeObject($('#queryForm')));">查询</a>
 									<a href="javascript:void(0);" class="easyui-linkbutton"
 									data-options="iconCls:'ext-icon-zoom_out',plain:true"
-									onclick="$('#queryForm input').val('');deviceGrid.datagrid('load',{});">重置查询</a>
+									onclick="$('#queryForm input').val('');serviceTypeGrid.datagrid('load',{});">重置查询</a>
 								</td>
 							</tr>
 						</table>
@@ -214,7 +149,7 @@
 		</table>
 	</div>
 	<div data-options="region:'center',fit:true,border:false">
-		<table id="deviceGrid" data-options="fit:true,border:false"
+		<table id="serviceTypeGrid" data-options="fit:true,border:false"
 			width="100%"></table>
 	</div>
 </body>

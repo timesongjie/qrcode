@@ -3,19 +3,24 @@ package com.heroopsys.qrcode.api.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.heroopsys.qrcode.api.bo.INotice;
 import com.heroopsys.qrcode.api.bo.IUser;
 import com.heroopsys.qrcode.common.converter.JacksonUtil;
 import com.heroopsys.qrcode.common.vo.Result;
 import com.heroopsys.qrcode.entity.Device;
-import com.heroopsys.qrcode.entity.Service;
+import com.heroopsys.qrcode.entity.ServiceInfo;
 import com.heroopsys.qrcode.entity.ServiceType;
+import com.heroopsys.qrcode.service.AccountService;
+import com.heroopsys.qrcode.service.DeviceService;
+import com.heroopsys.qrcode.service.ServiceInfoService;
 
 /**
  * Created by time on 15-12-22.
@@ -23,6 +28,13 @@ import com.heroopsys.qrcode.entity.ServiceType;
 @Controller
 @RequestMapping("/api")
 public class ApiController {
+
+    @Resource
+    private DeviceService deviceService;
+    @Resource
+    private AccountService accountService;
+    @Resource
+    private ServiceInfoService serviceInfoService;
 
     @RequestMapping("/auth")
     public Result<IUser> login(String name, String pwd) {
@@ -78,8 +90,8 @@ public class ApiController {
 	    Device device = new Device();
 	    result.setData(device);
 
-	    List<Service> services = new ArrayList<Service>();
-	    Service sevice = new Service();
+	    List<ServiceInfo> services = new ArrayList<ServiceInfo>();
+	    ServiceInfo sevice = new ServiceInfo();
 	    sevice.setServiceType(new ServiceType());
 	    services.add(sevice);
 	    device.setServices(services);
@@ -97,14 +109,32 @@ public class ApiController {
 	return result;
     }
 
-    @RequestMapping("/device")
+    @RequestMapping(value=("/device"),method=RequestMethod.POST)
     public Result addDevice(HttpServletRequest request) {
+	Result result = new Result();
 	String data = request.getParameter("data");
 	try {
 	    Device device = JacksonUtil.readValue(data, Device.class);
+	    deviceService.addDevice(device);
+	    result.setStatus((byte) 0);
 	} catch (Exception e) {
 	    e.printStackTrace();
+	    result.setStatus((byte) 1);
 	}
-	return null;
+	return result;
+    }
+    @RequestMapping(value=("/device/service"),method=RequestMethod.POST)
+    public Result addDeviceService(HttpServletRequest request) {
+	Result result = new Result();
+	String data = request.getParameter("data");
+	try {
+	    ServiceInfo service = JacksonUtil.readValue(data, ServiceInfo.class);
+	    serviceInfoService.addService(service);
+	    result.setStatus((byte) 0);
+	} catch (Exception e) {
+	    e.printStackTrace();
+	    result.setStatus((byte) 1);
+	}
+	return result;
     }
 }

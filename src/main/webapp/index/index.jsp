@@ -32,9 +32,9 @@
 							"url":"/device/deviceGrid.jsp"
 						}
 				    },{
-						text: '服务类型管理',
+						text: '服务记录管理',
 						"attributes":{
-							"url":"/serviceType/serviceTypeGrid.jsp"
+							"url":"/serviceinfo/serviceInfoGrid.jsp"
 						}
 				}
 				]

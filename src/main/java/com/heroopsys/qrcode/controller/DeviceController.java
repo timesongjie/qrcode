@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -23,14 +24,13 @@ public class DeviceController extends BaseController {
     private Logger log = LoggerFactory.getLogger(DeviceController.class);
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public Grid<Device> list(Integer page, Integer rows) {
+    public Grid<Device> list(Integer page, Integer rows,Device device,Model model) {
 	if (page == null) {
 	    page = 1;
 	}
 	if (rows == null) {
 	    rows = 20;
 	}
-	Device device = new Device();
 	Pager<Device> pager = new Pager<Device>();
 	pager.setPage(page);
 	pager.setRows(rows);
@@ -40,6 +40,8 @@ public class DeviceController extends BaseController {
 	} catch (Exception e) {
 	    e.printStackTrace();
 	    log.error("查询设备列表报错，联系管理员!" + e.getMessage());
+	}finally{
+	    doClear(model,"device");
 	}
 	grid.setRows(pager.getDataList());
 	grid.setTotal(pager.getTotal());

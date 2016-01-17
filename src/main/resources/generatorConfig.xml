@@ -32,12 +32,15 @@
 			targetPackage="com.heroopsys.qrcode.dao" targetProject="src/main/java">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
-
-		<table tableName="t_qrcode_service_type" domainObjectName="ServiceType"
+		<table tableName="t_qrcode_service" domainObjectName="Service"
+			enableCountByExample="true" enableSelectByExample="true"
+			enableUpdateByExample="false" enableDeleteByExample="false">
+		</table>
+		<!-- <table tableName="t_qrcode_service_type" domainObjectName="ServiceType"
 			enableCountByExample="false" enableSelectByExample="false"
 			enableUpdateByExample="false" enableDeleteByExample="false">
 		</table>
-		<!-- <table tableName="t_qrcode_device" domainObjectName="Device"
+		<table tableName="t_qrcode_device" domainObjectName="Device"
 			enableCountByExample="true" enableSelectByExample="true"
 			enableUpdateByExample="false" enableDeleteByExample="false">
 		</table>

@@ -24,13 +24,13 @@ public class DeviceService {
 		criteria.andDeviceCodeEqualTo(device.getDeviceCode());
 	    }
 	    if (device.getProjectName() != null) {
-		criteria.andProjectNameEqualTo(device.getProjectName());
+		criteria.andProjectNameLike(device.getProjectName());
 	    }
 	    if (device.getProjectLeader() != null) {
-		criteria.andProjectLeaderEqualTo(device.getProjectLeader());
+		criteria.andProjectLeaderLike(device.getProjectLeader());
 	    }
 	    if (device.getClientName() != null) {
-		criteria.andClientNameEqualTo(device.getClientName());
+		criteria.andClientNameLike(device.getClientName());
 	    }
 	    if (device.getSimPhone() != null) {
 		criteria.andSimPhoneEqualTo(device.getSimPhone());
@@ -39,5 +39,9 @@ public class DeviceService {
 	}
 	pager.setTotal(deviceMapper.countByExample(example));
 	pager.setDataList(deviceMapper.selectByExampleAndPager(example,pager));
+    }
+
+    public void addDevice(Device device) {
+	deviceMapper.insert(device);
     }
 }
