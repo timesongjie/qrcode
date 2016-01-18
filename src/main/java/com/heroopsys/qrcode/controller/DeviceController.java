@@ -24,27 +24,27 @@ public class DeviceController extends BaseController {
     private Logger log = LoggerFactory.getLogger(DeviceController.class);
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public Grid<Device> list(Integer page, Integer rows,Device device,Model model) {
-	if (page == null) {
-	    page = 1;
-	}
-	if (rows == null) {
-	    rows = 20;
-	}
-	Pager<Device> pager = new Pager<Device>();
-	pager.setPage(page);
-	pager.setRows(rows);
-	Grid<Device> grid = new Grid<Device>();
-	try {
-	    deviceService.list(device, pager);
-	} catch (Exception e) {
-	    e.printStackTrace();
-	    log.error("查询设备列表报错，联系管理员!" + e.getMessage());
-	}finally{
-	    doClear(model,"device");
-	}
-	grid.setRows(pager.getDataList());
-	grid.setTotal(pager.getTotal());
-	return grid;
-    };
+    public Grid<Device> list(Integer page, Integer rows, Device device, Model model) {
+        if (page == null) {
+            page = 1;
+        }
+        if (rows == null) {
+            rows = 20;
+        }
+        Pager<Device> pager = new Pager<Device>();
+        pager.setPage(page);
+        pager.setRows(rows);
+        Grid<Device> grid = new Grid<Device>();
+        try {
+            deviceService.list(device, pager);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("查询设备列表报错，联系管理员!" + e.getMessage());
+        } finally {
+            doClear(model, "device");
+        }
+        grid.setRows(pager.getDataList());
+        grid.setTotal(pager.getTotal());
+        return grid;
+    }
 }
