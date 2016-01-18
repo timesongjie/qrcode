@@ -6,10 +6,11 @@
 		<result column="user_name" jdbcType="VARCHAR" property="userName" />
 		<result column="status" jdbcType="TINYINT" property="status" />
 		<result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
+		<result column="perm" jdbcType="VARCHAR" property="perms" />
 	</resultMap>
 
 	<select id="queryAccount"  resultMap="accountMap" parameterType="com.heroopsys.qrcode.entity.Account">
-		select id,user_name as name,status,phone_number from t_qrcode_account where 1 = 1
+		select id,user_name as name,status,phone_number,perm from t_qrcode_account where 1 = 1
 		<if test="name != null">
 			and user_name=#{name}
 		</if>

@@ -22,6 +22,9 @@ public class DeviceService {
         DeviceExample example = new DeviceExample();
         if (device != null) {
             Criteria criteria = example.createCriteria();
+            if (device.getDeviceQrcode() != null) {
+                criteria.andDeviceCodeEqualTo(device.getDeviceQrcode());
+            }
             if (device.getDeviceCode() != null) {
                 criteria.andDeviceCodeEqualTo(device.getDeviceCode());
             }

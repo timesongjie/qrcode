@@ -1,7 +1,6 @@
 package com.heroopsys.qrcode.api.controller;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -106,7 +105,7 @@ public class ApiController {
         return result;
     }
 
-    @RequestMapping(value = "/device/list/{page}/{row}",method = RequestMethod.POST)
+    @RequestMapping(value = "/device/{page}/{row}",method = RequestMethod.POST)
     public Result<Pager<Device>> devices(HttpServletRequest request, @PathVariable("row") int row, @PathVariable("page") int pageIndex) {
         Result<Pager<Device>> result = new Result<Pager<Device>>();
         String data = request.getParameter("data");

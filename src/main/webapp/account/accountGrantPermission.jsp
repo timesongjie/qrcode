@@ -1,84 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <jsp:include page="/common/common.jsp"></jsp:include>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set value="${pageContext.request.contextPath }" var="ctx"></c:set>
+<c:url var="accountGrantPermission" value="/mvc/account/perm"></c:url>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>账号权限授权</title>
 <script type="text/javascript">
-
-	/*选择授权的权限所属的系统id*/
-	var grant_perm_systemId = null;
 	var submitForm = function(_dialog, _grid, _$) {
-		var nodes = $('#permissionTree2').tree('getChecked', [ 'checked', 'indeterminate' ]);
-		var ids = [];																																
-		for (var i = 0; i < nodes.length; i++) {
-			if(nodes[i].attributes && nodes[i].attributes.isModule) {
-				continue;
-			}
-			ids.push(nodes[i].id);
-		}
-		if(ids.length == 0) {
-			parent.$.messager.confirm('询问', '本次未选择任何权限，提交之后将清空原所有授权权限，确定提交吗？', function(r) {
-				if (r) {
-					submitFun(ids, _dialog, _grid, _$);
-				}
-			});																		
-		}else{													
-			submitFun(ids, _dialog, _grid, _$);																		
-		}
-	};
-	
-	var submitFun = function(ids, _dialog, _grid, _$) {
-		$.post("${grantPermissionAction}", {
-			'account.id' : '${account.id}',
-			permissionIds : ids.join(','),
-			systemId:grant_perm_systemId
-		}, function(result) {
-			if (result.success) {
-				_dialog.dialog('destroy');
-				_$.messager.alert('提示', result.msg, 'info');
-			} else {
-				_$.messager.alert('提示', result.msg, 'error');
-			}
-		}, 'json');
+		var checked =$('#permissionTree').tree("getSelected");
+		var value = ['0','0','0'];
+		alert(checked)
+		$(checked).each(function(i,e){
+			alert(e.id)
+			if(e.id == 1){
+				value[0] = '1';
+			}else if(e.id == 2){
+				value[1] = '1';
+			}else if(e.id == 3){
+				value[2] = '1';
+			} 
+		});
+		alert(value.join(""))
 	}
-	
+	var tree = null;
 	$(function() {
 		parent.$.messager.progress({
 			text : '数据加载中....'
 		});
-		var data = [];
-		<c:forEach items="${account.subSystemSet}" var="system">
-			data.push({id:${system.id},text:'${system.systemName}',accountId:${account.id}})
-		</c:forEach>
-		$('#permissionTree').tree({
-			checkbox : false,
-			data: data,
+		tree = $('#permissionTree').tree({
+			checkbox : true,
+			cascadeCheck:true,
+			url : "${accountGrantPermission}?id=${param.id}",
+			method : "get",
 			onLoadSuccess : function(node, data) {
 				parent.$.messager.progress('close');
-				if(data.length == 0){
+				if (data.length == 0) {
 					parent.$.messager.alert('提示', '数据异常', 'info');
 				}
-			},
-			onSelect:function(node){
-				grant_perm_systemId = node.id;
-				$('#permissionTree2').tree({
-					url : '${ctx}/auth/account/permissionTree?systemId='+node.id+'&account.id='+node.accountId,
-					checkbox : true,
-					onLoadSuccess : function(node, data) {
-						parent.$.messager.progress('close');
-						if(data.length == 0){
-							parent.$.messager.alert('提示', '该系统下未建立权限!', 'info');
-							$("#tips").hide();
-						}else{
-							$("#tips").show();
-						}
-					}
-				});
 			}
 		});
 	});

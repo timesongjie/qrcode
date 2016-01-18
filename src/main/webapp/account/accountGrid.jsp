@@ -6,7 +6,7 @@
 <c:url var="addAccountAction" value="/account/accountAdd.jsp"></c:url>
 <c:url var="editAccountAction" value="/mvc/account"></c:url>
 <c:url var="deleteAccountAction" value="/mvc/account"></c:url>
-
+<c:url var="accountGrantPermission" value="/account/accountGrantPermission.jsp"></c:url>
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -101,8 +101,8 @@
             }
             var dialog = parent.modalDialog({
                 title: '账号权限授权',
-                url: '${accountGrantPermissionAction}?account.id=' + accountArr[0].id,
-                height: 400,
+                url: '${accountGrantPermission}?id=' + accountArr[0].id,
+                height: 160,
                 width: 300,
                 buttons: [{
                     text: '授权',

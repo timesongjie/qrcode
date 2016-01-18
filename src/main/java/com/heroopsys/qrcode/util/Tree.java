@@ -22,6 +22,15 @@ public class Tree implements Serializable {
 
     private Map<String, Object> attributes;
 
+    public Tree() {
+
+    }
+
+    public Tree(String text, Long id) {
+	this.text = text;
+	this.id = id;
+    }
+
     public Long getId() {
 	return id;
     }
