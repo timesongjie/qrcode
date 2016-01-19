@@ -64,4 +64,7 @@ CREATE TABLE `t_qrcode_notice` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COMMENT='通告表';
 
- insert into t_qrcode_device(device_code,device_model,device_qrcode,project_name,project_leader,project_others,contract_point,client_name,client_site,client,client_tel,activation_code,activation_code2,activation_code4,wlan,sim_phone,sim_fee,bak)values('4938c918f9a24d5cb2df10fd898b8246','device_110','4938c918f9a24d5cb2df10fd898b8246','device_007','lucy','lili,lilei','','clientA','','','','','','','','','','');
+alter table t_qrcode_account add column perm varchar(20) default '000' comment '权限信息';
+
+insert into t_qrcode_device(device_code,device_model,device_qrcode,project_name,project_leader,project_others,contract_point,client_name,client_site,client,client_tel,activation_code,activation_code2,activation_code4,wlan,sim_phone,sim_fee,bak)values('4938c918f9a24d5cb2df10fd898b8246','device_110','4938c918f9a24d5cb2df10fd898b8246','device_007','lucy','lili,lilei','','clientA','','','','','','','','','','');
+insert into t_qrcode_service(service_type_id,device_code,service_name,service_date,service_location,service_content,bak)values(1,'4938c918f9a24d5cb2df10fd898b8246','服务名称','2016-1-19','湖南长沙','售前服务','备注');

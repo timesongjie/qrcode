@@ -45,27 +45,37 @@
 				title : 'id',
 				field : 'id',
 				sortable : false,
-				hidden : true
+				hidden : false
 			}, {
 				title : '产品编号',
 				field : 'deviceCode',
 				sortable : false,
-				hidden : true
+				hidden : false
 			}, {
 				title : '项目名称',
 				field : 'projectName',
 				sortable : false,
 				hidden : false
 			}, {
-				title : '服务类型',
-				field : 'serviceTypeId',
-				sortable : false,
-				hidden : true
-			}, {
 				title : '服务时间',
 				field : 'debugDate',
 				sortable : false,
-				hidden : true
+				hidden : false
+			}, {
+				title : '服务位置',
+				field : 'serviceLocation',
+				sortable : false,
+				hidden : false
+			}, {
+				title : '服务内容',
+				field : 'serviceContent',
+				sortable : false,
+				hidden : false
+			}, {
+				title : '备注',
+				field : 'bak',
+				sortable : false,
+				hidden : false
 			}] ],
 			toolbar : '#toolbar',
 			onBeforeLoad : function(param) {

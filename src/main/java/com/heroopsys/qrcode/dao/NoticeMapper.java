@@ -22,5 +22,7 @@ public interface NoticeMapper {
 
     int countByNotice(Notice notice);
 
-    List<Notice> selectByNotice(@Param("notice") Notice notice,@Param("page") Pager<Notice> pager);
+    List<Notice> selectByNotice(@Param("notice") Notice notice, @Param("page") Pager<Notice> pager);
+
+    Notice getNewest();
 }

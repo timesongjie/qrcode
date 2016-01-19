@@ -30,45 +30,49 @@ public class NoticeController extends BaseController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public Grid<Notice> list(Integer page, Integer rows) {
-	if (page == null) {
-	    page = 1;
-	}
-	if (rows == null) {
-	    rows = 20;
-	}
-	Notice notice = new Notice();
-	Pager<Notice> pager = new Pager<Notice>();
-	pager.setPage(page);
-	pager.setRows(rows);
-	Grid<Notice> grid = new Grid<Notice>();
-	try {
-	    noticeService.list(notice, pager);
-	} catch (Exception e) {
-	    e.printStackTrace();
-	    log.error("查询设备列表报错，联系管理员!" + e.getMessage());
-	}
-	grid.setRows(pager.getDataList());
-	grid.setTotal(pager.getTotal());
-	return grid;
-    };
+        if (page == null) {
+            page = 1;
+        }
+        if (rows == null) {
+            rows = 20;
+        }
+        Notice notice = new Notice();
+        Pager<Notice> pager = new Pager<Notice>();
+        pager.setPage(page);
+        pager.setRows(rows);
+        Grid<Notice> grid = new Grid<Notice>();
+        try {
+            noticeService.list(notice, pager);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("查询设备列表报错，联系管理员!" + e.getMessage());
+        }
+        grid.setRows(pager.getDataList());
+        grid.setTotal(pager.getTotal());
+        return grid;
+    }
+
+    ;
 
     @RequestMapping
     public Result addNotice(Notice notice, Model model) {
-	notice.setAddDate(new Date());
-	noticeService.add(notice);
-	doClear(model, "notice");
-	return new Result("添加成功", true);
+        notice.setAddDate(new Date());
+        noticeService.add(notice);
+        doClear(model, "notice");
+        return new Result("添加成功", true);
     }
+
     @RequestMapping(method = RequestMethod.PUT)
     public Result updateNotice(Notice notice, Model model) {
-	noticeService.updateNotice(notice);
-	doClear(model, "notice");
-	return new Result("更新成功!", true);
+        noticeService.updateNotice(notice);
+        doClear(model, "notice");
+        return new Result("更新成功!", true);
     }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String getNoticeById(@PathVariable Integer  id, Model model) {
-	Notice notice = noticeService.getById(id);
-	model.addAttribute("notice", notice);
-	return "notice/noticeEdit";
+    public String getNoticeById(@PathVariable Integer id, Model model) {
+        Notice notice = noticeService.getById(id);
+        model.addAttribute("notice", notice);
+        return "notice/noticeEdit";
     }
 }

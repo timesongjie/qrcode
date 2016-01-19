@@ -25,4 +25,6 @@ public interface ServiceMapper {
     int updateByPrimaryKeySelective(ServiceInfo record);
 
     int updateByPrimaryKey(ServiceInfo record);
+
+    List<ServiceInfo> selectByDeviceCode(String deviceCode);
 }

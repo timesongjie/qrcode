@@ -9,6 +9,8 @@ import com.heroopsys.qrcode.dao.NoticeMapper;
 import com.heroopsys.qrcode.entity.Notice;
 import com.heroopsys.qrcode.util.Pager;
 
+import java.util.Date;
+
 @Service
 public class NoticeService {
 
@@ -16,21 +18,25 @@ public class NoticeService {
     private NoticeMapper noticeMapper;
 
     public void list(Notice notice, Pager<Notice> pager) {
-	pager.setTotal(noticeMapper.countByNotice(notice));
-	pager.setDataList(noticeMapper.selectByNotice(notice,pager));
+        pager.setTotal(noticeMapper.countByNotice(notice));
+        pager.setDataList(noticeMapper.selectByNotice(notice, pager));
     }
 
     public void add(Notice notice) {
-	noticeMapper.insert(notice);
+        noticeMapper.insert(notice);
     }
 
     public void updateNotice(Notice notice) {
-	Assert.notNull(notice.getId());
-	noticeMapper.updateByPrimaryKey(notice);
+        Assert.notNull(notice.getId());
+        notice.setAddDate(new Date());
+        noticeMapper.updateByPrimaryKey(notice);
     }
 
     public Notice getById(Integer id) {
-	return noticeMapper.selectByPrimaryKey(id);
+        return noticeMapper.selectByPrimaryKey(id);
     }
 
+    public Notice getNewest() {
+        return noticeMapper.getNewest();
+    }
 }

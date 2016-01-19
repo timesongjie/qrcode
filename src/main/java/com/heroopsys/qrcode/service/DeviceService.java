@@ -9,6 +9,7 @@ import com.heroopsys.qrcode.entity.Device;
 import com.heroopsys.qrcode.entity.DeviceExample;
 import com.heroopsys.qrcode.entity.DeviceExample.Criteria;
 import com.heroopsys.qrcode.util.Pager;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -22,22 +23,22 @@ public class DeviceService {
         DeviceExample example = new DeviceExample();
         if (device != null) {
             Criteria criteria = example.createCriteria();
-            if (device.getDeviceQrcode() != null) {
+            if (!StringUtils.isEmpty(device.getDeviceQrcode())) {
                 criteria.andDeviceCodeEqualTo(device.getDeviceQrcode());
             }
-            if (device.getDeviceCode() != null) {
+            if (!StringUtils.isEmpty(device.getDeviceCode())) {
                 criteria.andDeviceCodeEqualTo(device.getDeviceCode());
             }
-            if (device.getProjectName() != null) {
+            if (!StringUtils.isEmpty(device.getProjectName())) {
                 criteria.andProjectNameLike(device.getProjectName());
             }
-            if (device.getProjectLeader() != null) {
+            if (!StringUtils.isEmpty(device.getProjectLeader())) {
                 criteria.andProjectLeaderLike(device.getProjectLeader());
             }
-            if (device.getClientName() != null) {
+            if (!StringUtils.isEmpty(device.getClientName())) {
                 criteria.andClientNameLike(device.getClientName());
             }
-            if (device.getSimPhone() != null) {
+            if (!StringUtils.isEmpty(device.getSimPhone())) {
                 criteria.andSimPhoneEqualTo(device.getSimPhone());
             }
             // ....可以按照条件新增
@@ -54,9 +55,15 @@ public class DeviceService {
         }
     }
 
-    public List<Device> findByQrcode(Device device){
+    public List<Device> findByDevice(Device device) {
         DeviceExample example = new DeviceExample();
-        example.createCriteria().andDeviceQrcodeEqualTo(device.getDeviceQrcode());
+        Criteria criteria = example.createCriteria();
+        if (device.getDeviceQrcode() != null) {
+            criteria.andDeviceQrcodeEqualTo(device.getDeviceQrcode());
+        }
+        if (device.getId() != null) {
+            criteria.andIdEqualTo(device.getId());
+        }
         return deviceMapper.selectByExampleAndPager(example, null);
     }
 }

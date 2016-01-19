@@ -1,11 +1,16 @@
 package com.heroopsys.qrcode.api.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-
+import com.heroopsys.qrcode.api.bo.INotice;
+import com.heroopsys.qrcode.api.bo.IUser;
+import com.heroopsys.qrcode.common.converter.JacksonUtil;
+import com.heroopsys.qrcode.common.vo.Result;
+import com.heroopsys.qrcode.entity.Device;
+import com.heroopsys.qrcode.entity.Notice;
+import com.heroopsys.qrcode.entity.ServiceInfo;
+import com.heroopsys.qrcode.entity.ServiceType;
+import com.heroopsys.qrcode.service.DeviceService;
+import com.heroopsys.qrcode.service.NoticeService;
+import com.heroopsys.qrcode.service.ServiceInfoService;
 import com.heroopsys.qrcode.util.Pager;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
@@ -13,16 +18,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.heroopsys.qrcode.api.bo.INotice;
-import com.heroopsys.qrcode.api.bo.IUser;
-import com.heroopsys.qrcode.common.converter.JacksonUtil;
-import com.heroopsys.qrcode.common.vo.Result;
-import com.heroopsys.qrcode.entity.Device;
-import com.heroopsys.qrcode.entity.ServiceInfo;
-import com.heroopsys.qrcode.entity.ServiceType;
-import com.heroopsys.qrcode.service.AccountService;
-import com.heroopsys.qrcode.service.DeviceService;
-import com.heroopsys.qrcode.service.ServiceInfoService;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by time on 15-12-22.
@@ -34,9 +33,10 @@ public class ApiController {
     @Resource
     private DeviceService deviceService;
     @Resource
-    private AccountService accountService;
-    @Resource
     private ServiceInfoService serviceInfoService;
+    @Resource
+    private NoticeService noticeService;
+
 
     @RequestMapping("/auth")
     public Result<IUser> login(String name, String pwd) {
@@ -55,9 +55,10 @@ public class ApiController {
         Result<INotice> result = new Result<INotice>();
         result.setStatus((byte) 0);
         result.setMsg("获取公告成功!");
-        INotice notice = new INotice();
-        notice.setNotice("今天是个好天气!");
-        result.setData(notice);
+        Notice notice = noticeService.getNewest();
+        INotice inotice = new INotice();
+        inotice.setNotice(notice.getNotice());
+        result.setData(inotice);
         return result;
     }
 
@@ -88,7 +89,7 @@ public class ApiController {
         Result<Device> result = new Result<Device>();
         Device device = new Device();
         device.setDeviceQrcode(qrcode);
-        List<Device> devices = deviceService.findByQrcode(device);
+        List<Device> devices = deviceService.findByDevice(device);
         if (!CollectionUtils.isEmpty(devices)) {
             result.setStatus((byte) 0);
             result.setMsg("获取设备成功!");
@@ -105,7 +106,7 @@ public class ApiController {
         return result;
     }
 
-    @RequestMapping(value = "/device/{page}/{row}",method = RequestMethod.POST)
+    @RequestMapping(value = "/device/{page}/{row}", method = RequestMethod.POST)
     public Result<Pager<Device>> devices(HttpServletRequest request, @PathVariable("row") int row, @PathVariable("page") int pageIndex) {
         Result<Pager<Device>> result = new Result<Pager<Device>>();
         String data = request.getParameter("data");
@@ -113,7 +114,10 @@ public class ApiController {
         try {
             page.setRows(row);
             page.setPage(pageIndex);
-            Device device = JacksonUtil.readValue(data, Device.class);
+            Device device = new Device();
+            if (data != null) {
+                device = JacksonUtil.readValue(data, Device.class);
+            }
             deviceService.list(device, page);
             result.setData(page);
             result.setStatus((byte) 0);

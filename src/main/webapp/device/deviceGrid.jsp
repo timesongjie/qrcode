@@ -3,9 +3,9 @@
 <jsp:include page="/common/common.jsp"></jsp:include>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:url var="deviceDataGridAction" value="/mvc/device/list"></c:url>
-<c:url var="addAccountAction" value="/account/accountAdd.jsp"></c:url>
-<c:url var="editAccountAction" value="/mvc/account"></c:url>
-<c:url var="deleteAccountAction" value="/mvc/account"></c:url>
+<c:url var="viewDeviceServiceAction" value="/mvc/serviceInfo"></c:url>
+<c:url var="editDeviceAction" value="/mvc/Device"></c:url>
+<c:url var="deleteDeviceAction" value="/mvc/Device"></c:url>
 
 
 
@@ -18,14 +18,14 @@
 	var deviceGrid = null;
 	//编辑设备
 	var editFun = function() {
-		var accountArr = deviceGrid.datagrid("getSelections");
-		if (accountArr && accountArr.length < 1) {
-			parent.$.messager.alert("提示", "请选择要编辑的账号", "info");
+		var DeviceArr = deviceGrid.datagrid("getSelections");
+		if (DeviceArr && DeviceArr.length < 1) {
+			parent.$.messager.alert("提示", "请选择要编辑的产品", "info");
 			return;
 		}
 		var dialog = parent.modalDialog({
-			title : '编辑账号信息',
-			url : '${editAccountAction}/' + accountArr[0].id,
+			title : '编辑产品信息',
+			url : '${editDeviceAction}/' + DeviceArr[0].id,
 			height : 200,
 			width : 450,
 			buttons : [
@@ -43,16 +43,16 @@
 					} ]
 		});
 	}
-	//查看设备
+	//查看设备服务信息
 	var viewFun = function() {
-		var accountArr = deviceGrid.datagrid("getSelections");
-		if (accountArr && accountArr.length < 1) {
-			parent.$.messager.alert("提示", "请选择要编辑的账号", "info");
+		var DeviceArr = deviceGrid.datagrid("getSelections");
+		if (DeviceArr && DeviceArr.length < 1) {
+			parent.$.messager.alert("提示", "请选择要编辑的产品", "info");
 			return;
 		}
 		var dialog = parent.modalDialog({
-			title : '查看账号信息',
-			url : '${viewAccountAction}?account.id=' + accountArr[0].id,
+			title : '查看产品信息',
+			url : '${viewDeviceServiceAction}?deviceCode=' + DeviceArr[0].deviceCode,
 			height : 260,
 			width : 450,
 			buttons : [ {
@@ -89,27 +89,27 @@
 				title : '产品编号',
 				field : 'deviceCode',
 				sortable : false,
-				hidden : true
+				hidden : false
 			}, {
 				title : '产品型号',
 				field : 'deviceModel',
 				sortable : false,
-				hidden : true
+				hidden : false
 			}, {
 				title : '产品二维码',
 				field : 'deviceQrcode',
 				sortable : false,
-				hidden : true
+				hidden : false
 			}, {
 				title : '调试时间',
 				field : 'debugDate',
 				sortable : false,
-				hidden : true
+				hidden : false
 			}, {
 				title : '完成时间',
 				field : 'finishDate',
 				sortable : false,
-				hidden : true
+				hidden : false
 			}, {
 				title : '项目名称',
 				field : 'projectName',
@@ -203,7 +203,7 @@
 							</td>
 							<td><a href="javascript:void(0);" class="easyui-linkbutton"
 								data-options="iconCls:'ext-icon-note',plain:true"
-								onclick="viewFun();">查看</a></td>
+								onclick="viewFun();">查看服务信息</a></td>
 							<td>
 								<div class="datagrid-btn-separator"></div>
 							</td>

@@ -50,6 +50,15 @@
 		service_location, service_content,
 		bak
 	</sql>
+	<select id="selectByDeviceCode" resultMap="BaseResultMap" parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		from t_qrcode_service where 1 = 1
+		<if test="_parameter!= null">
+			and device_code = #{device_code}
+		</if>
+	</select>
+
 	<select id="selectByExampleAndPager" resultMap="BaseResultMap"
 		parameterType="map">
 		select

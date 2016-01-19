@@ -9,6 +9,11 @@
 	<sql id="Base_Column_List">
 		id, notice, add_date
 	</sql>
+
+	<select id='getNewest' resultMap="BaseResultMap" >
+		select * from t_qrcode_notice order by add_date desc limit 1;
+	</select>
+
 	<select id='countByNotice' parameterType="com.heroopsys.qrcode.entity.Notice"  resultType="int" >
 		select count(*) from
 		t_qrcode_notice;
